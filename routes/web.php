@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\PostController as PostController;
+use App\Http\Controllers\Admin\TagController as TagController;
 
 
 /*
@@ -29,7 +30,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth','verified'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth','verified'])->name('dashboard');
-    Route::resource('posts',PostController::class)->parameters(['posts' => 'post:slug']);
+    Route::resource('/posts',PostController::class)->parameters(['posts' => 'post:slug']);
+    Route::resource('/tags',TagController::class)->parameters(['tags' => 'tag:slug']);
+
 });
 
 Route::middleware('auth')->group(function () {
