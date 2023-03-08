@@ -15,6 +15,12 @@
                 <p><strong>Categoria:</strong>{{$post->category ? $post->category->name : 'Senza categoria'}}</p>
                 <label class="d-block"><strong>Contenuto:</strong></label>
                 <p>{{$post->content}}</p>
+                <p><strong>Tags:</strong></p>
+                @forelse($post->tags as $tag)
+                {{$tag->name}}
+                @empty
+                nessun tag associato
+                @endforelse
             </div>
         </div>
     </div>
