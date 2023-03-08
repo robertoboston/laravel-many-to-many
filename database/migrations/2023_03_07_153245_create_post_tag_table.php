@@ -18,11 +18,11 @@ return new class extends Migration
             //creo la colonna per il post
             $table->unsignedBigInteger('post_id');
             //aggiungo la foreign key
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('post_id')->references('id')->on('posts')->cascadeOnDelete();
             //creo la colonna per i tag
             $table->unsignedBigInteger('tag_id');
             //aggiungo la foreign key
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('tag_id')->references('id')->on('tags')->cascadeOnDelete();
             $table->timestamps();
         });
     }

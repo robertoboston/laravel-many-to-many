@@ -34,6 +34,13 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group my-3">
+                    <div class="control-label">Tags</div>
+                    @foreach ($tags as $item)
+                    <input type="checkbox" value="{{$item->id}}" name="tags[]">
+                    <label class="form-check-label">{{$item->name}}</label>
+                    @endforeach
+                </div>
                 <div class="form-group">
                     <label class="control-label">
                         Contenuto

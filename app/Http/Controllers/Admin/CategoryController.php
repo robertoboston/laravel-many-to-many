@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
