@@ -55,6 +55,10 @@ class PostController extends Controller
 
         $newPost->save();
 
+        if($request->has('tags')){
+            $newPost->tags()->attach($request->tags);
+        }
+
         return redirect()->route('admin.posts.index')->with('message','post creato correttamente');
 
     }
@@ -79,7 +83,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.posts.edit',compact('post','categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit',compact('post','categories','tags'));
     }
 
     /**
@@ -97,6 +102,12 @@ class PostController extends Controller
 
         $post->update($form_data);
 
+        if($request->has('tags')){
+
+            $post->tags()->sync($request->tags);
+         
+        }
+
         return redirect()->route('admin.posts.index')->with('message', 'Hai modificato correttamente il post');
     }
 
@@ -108,6 +119,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->sync([]);
+
+        $post->delete();
+
         $post->delete();
 
         return redirect()->route('admin.posts.index')->with('message','Il Post è stato cancellato correttamente');

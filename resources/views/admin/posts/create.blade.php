@@ -37,9 +37,14 @@
                 <div class="form-group my-3">
                     <div class="control-label">Tags</div>
                     @foreach ($tags as $item)
+                    <div class="form-check @error('tags') is-invalid @enderror">
                     <input type="checkbox" value="{{$item->id}}" name="tags[]">
                     <label class="form-check-label">{{$item->name}}</label>
+                    </div>
                     @endforeach
+                    @error('tags')
+                    <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label class="control-label">

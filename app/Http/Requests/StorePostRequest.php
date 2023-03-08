@@ -26,7 +26,8 @@ class StorePostRequest extends FormRequest
         return [
             'title'=>['required','unique:posts','max:150'],
             'content' => ['nullable'],
-            'category_id'=>['nullable','exists:categories,id']
+            'category_id'=>['nullable','exists:categories,id'],
+            'tags' => ['exists:tags,id']
         ];
     }
 
@@ -40,7 +41,7 @@ class StorePostRequest extends FormRequest
         return [
             'title.required'=> 'A title is required',
             'title.unique' => 'E\' gia presente un post con questo titolo',
-            'title.max'=>'Il post non può essere più lungo di :max caratteri'
+            'title.max'=>'Il post non può essere più lungo di :max caratteri',
         ];
     }
 }
